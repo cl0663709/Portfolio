@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="bg-secondary">
+    <header class="bg-dark mb-5 w-100" style="position: fixed;top:0;">
+    <div class="row">
+        <div class="col-12  d-flex justify-content-md-end justify-content-start">
+            <ul class="p-3">
+                <li ><a href="index.html" class="link">Home</a></li>
+                <li ><a href="About.html" class="link">About me</a></li>
+                <li ><a href="Skills.html" class="link">Skills</a></li>
+                <li ><a href="Contact.html" class="link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+
+
+<br><br><br><br>
+<h4  class="text-white">Reach Out Me !</h4>
+
+    <form class="bg-dark" onsubmit="sendmail(event)">
+       <h3 class="text-info pt-3" style="margin-left:33px;">Mail Me</h3> 
+        <input type="email"  placeholder="Your Email" id="email">
+        <input type="text" placeholder="Your Name" id="name">
+        <input type="text" placeholder="Subject" id="subject">
+        <input id="msg" type="text" placeholder="Message">
+        <input id="button" type="submit" value="Send" >
+    </form>
+
+
+        <div id="dialogbox">
+                <div id="dialogbox-content">
+                    <p id="Confirmationpara"></p>
+                    <button id="Ok">OK</button>
+                </div>
+        </div>
+    
+    
+
+
+<footer class="bg-dark mb-5 w-100 pt-3" >
+    <table >
+        <tr>
+
+            <td>
+                <a href="https://www.linkedin.com/in/hemachandran-l-9b9999290/" class="imglink">
+                    <img src="/linkedin-circle.svg" alt="">
+                </a>
+            </td>
+            <td>
+                <a href="https://www.instagram.com/chandru0001/" class="imglink">
+                    <img src="/insta-logo.png" alt="" style="padding: 5px;">
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/Grandsteller?tab=repositories" class="imglink">
+                    <img src="/Capture.PNG" alt="">
+                </a>                
+            </td>
+            <td>
+                <a href="mailto:chand201118049@gmail.com" class="imglink">
+                    <img src="/email.png" alt="">
+                </a>                
+            </td>
+            <td>
+                <a href="https://wa.me/8270285639" class="imglink">
+                    <img src="/whats app.png" alt="">
+                </a>                
+            </td>
+        </tr>
+        
+    </table>
+
+    
+
+
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+    <script>
+    
+    emailjs.init('7WmlmkB4PpZ4CgS5h'); // Replace with your Public Key
+    
+    function sendmail(event) {
+        event.preventDefault();
+        const emailParams = {
+            name: document.getElementById("name").value, 
+            email: document.getElementById("email").value, 
+            subject: document.getElementById("subject").value, 
+            message: document.getElementById("msg").value 
+        };
+        emailjs
+            .send("service_nt7ocr9", "template_3uki52n", emailParams)
+            .then((response) => {
+                dispalyconformation(true);
+                console.log('Success:', response.status, response.text);
+            })
+            .catch((error) => {
+                dispalyconformation(true);
+                console.error('Error:', error);
+            });
+            document.getElementById("name").value="";
+            document.getElementById("email").value="";
+            document.getElementById("subject").value="";
+            document.getElementById("msg").value="";
+    }
+
+
+    function dispalyconformation(boolval){
+        let okbtn = document.getElementById("Ok");
+        let dialogbox = document.getElementById("dialogbox");
+        let para = document.getElementById("Confirmationpara");
+        dialogbox.style.display="block";
+        if(boolval){
+            para.innerHTML="Mail sent sucessfully !" 
+        }
+        else{
+            para.innerHTML="Unable to sent Mail Try later!" 
+        }
+      okbtn.addEventListener("click",()=>{
+                    dialogbox.style.display="none";
+                })
+            
+    }
+
+
+</script>
+
+
+
+<style>
+
+#Ok{
+    margin-top: 15px;
+    width: 50px;
+    border-radius: 8px;
+    color: cyan;
+    background-color: black;
+    border: 1px solid white;
+    }
+
+
+    #dialogbox{
+    display: none;
+    position: fixed;
+    top:  0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Ensures it appears above other elements */
+    }
+
+    #dialogbox-content{
+        background-color: #fff;
+        margin: 15% auto; /* Center the modal */
+        padding: 15px;
+        padding-top:20px;
+        margin-left: 75px;
+        margin-top:250px;
+        width: 60%;
+        height: 20%;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border: 4px solid gray;
+    }
+
+
+
+    
+li{
+        display: inline;
+        margin-left:25px;
+       
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .link:hover{
+        color: cyan;
+        border-bottom:1px solid cyan;
+        font-weight: bold;
+    }
+
+
+    img{
+        width:40px;
+        height: 40px;
+        background-color: white;
+         border: 1px solid white;
+        border-radius: 50px; 
+        
+    }
+
+
+
+    h4{     
+         margin-left: 40px;
+    }
+
+    
+
+    .imglink{
+        margin-left: 25px;
+
+    }
+
+    
+
+    footer{
+        height: 80px; 
+        position: relative;
+        top: 150px;
+        
+    }
+
+
+    #button{
+        width:150px;
+        margin-left:70px;
+        margin-top:15px;
+        height:30px;
+        padding:1px;
+        color: cyan;
+        background-color: black;
+        border: 1px solid white;
+    }
+
+    form{
+        margin-left: 27px;
+        width: 85%;
+        height:380px ;
+        border-radius: 10px;
+    }
+
+     input{
+        display: block;
+        width: 250px;
+        height:10%;
+        margin-top:20px;
+        margin-left: 25px;
+        padding: 8px;  
+        border-radius: 10px;
+        font-size: 18px;
+     }
+
+    #msg{
+        height:80px;
+    }
+
+    input:active{
+        border: 1px solid cyan;
+    }
+
+
+    @media (min-width:801px){
+
+    #Confirmationpara{
+    font-weight: bold;
+    font-size: 1.7em;
+    }
+
+    #Ok{
+    margin-top: 15px;
+    width: 50px;
+    border-radius: 8px;
+    color: cyan;
+    background-color: black;
+    border: 1px solid white;
+    }
+
+
+    #dialogbox{
+    display: none;
+    position: fixed;
+    top:  0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Ensures it appears above other elements */
+    }
+
+    #dialogbox-content{
+        background-color: #fff;
+        margin: 15% auto; /* Center the modal */
+        padding: 20px;
+        padding-top:50px;
+        margin-left: 440px;
+        width: 30%;
+        height: 40%;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border: 4px solid gray;
+    }
+
+    h4{
+        margin-left: 330px;
+    }
+
+    form{
+        margin-left: 320px;
+        width: 50%;
+        height: 550px;
+        border-radius: 10px;
+            
+    }
+
+    input{
+        display: block;
+        margin-top: 20px;
+        margin-left: 33px;
+        width: 88%;
+        height: 10%;
+        border-radius: 10px;
+        padding: 25px;
+        border-color: white;
+    }
+
+    #msg{
+        height: 27%;
+        padding-left:25px;
+        padding-bottom: 85px;
+    }
+
+    #button{
+        width:170px;
+        height:40px;
+        padding:1px;
+        margin-top: 30px;
+        margin-left: 235px;
+        color: cyan;
+        background-color: black;
+        border: 2px solid white;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+
+    #button:hover ,img:hover{
+        transform: scale(1.1);
+  
+    }
+
+    footer{
+        height: 80px; 
+        position: relative;
+        top: 100px;
+       padding-left: 33px;
+    }
+
+    table{
+        margin-left: 450px;
+        padding: 30px;
+    }
+
+
+}
+
+@media (max-width:400px){
+form{
+    margin-top: 15px;
+}
+
+td{
+    margin-left: 0px;
+}
+
+}
+
+</style>
+</body>
+
+</html>
